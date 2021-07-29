@@ -1,0 +1,1 @@
+<img src="{{ asset('/images/uta_horizontal.png') }}" alt="" style=width:256px;>
