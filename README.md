@@ -1,5 +1,5 @@
 # WikiUTA
-Proyecto Tecno Web
+Proyecto Tecnología Web
 
 Proyecto realizado para la asignatura de Tecnologia Web
 
