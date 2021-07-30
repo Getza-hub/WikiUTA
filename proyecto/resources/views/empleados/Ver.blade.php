@@ -71,7 +71,7 @@
             </div>
 
             <div class="col-md-5 order-md-1">
-                <img class="rounded-circle border-yellow border-4" src="{{ $empleado->imagen }}" width="400"
+                <img class="rounded-circle border-blue border-4" src="{{ $empleado->imagen }}" width="400"
                     height="400">
             </div>
 

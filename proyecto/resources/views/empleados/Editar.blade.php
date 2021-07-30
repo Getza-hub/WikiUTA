@@ -61,8 +61,10 @@
     @else
         <div class="text-center">
             <div class="col">
-                <a href="/login" class="btn btn-primary col-2 float-left">Logueate para editar</a>
+                <a href="/login" class="btn btn-primary col-2 text-center">Loguéate para editar</a>
             </div>
+            <div>. </div>
+            <div>. </div>
         </div>
     @endauth
 
