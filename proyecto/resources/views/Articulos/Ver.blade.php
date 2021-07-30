@@ -42,15 +42,21 @@
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
               <h1 class="featurette-heading">{{$articulo->titulo_articulo}}</h1>
-              <label class =" form-group "rows="12" cols="78">{{$articulo->descripcion_articulo}}</label>
+              <textarea disabled class =" form-control "rows="12" cols="78">{{$articulo->descripcion_articulo}}</textarea>
               <div class="mt-3">
-                  <button class="btn btn-primary">Editar</button>
-                  <a href="\articulos" class="btn btn-secondary">Salir</a>
+                <a class="btn btn-primary">Editar</a>
+                <form action="{{route('articulos.destroy',$articulo->articulo_id)}} " Method ="post">
+                  @csrf
+                  @method('DELETE')
+
+                  <input type = "submit" class="btn btn-danger col-2" value="Eliminar">
+
+                </form>
+                <a href="\articulos" class="btn btn-secondary">Salir</a>
               </div>
           </div>
           <div class="col-md-5 order-md-1">
             <img src="{{$articulo->imagen}}" width="400" height="380">
-            <small class="text-muted">creado por {{$user->name}},{{$user->created_at}}</small>
           
           </div>
         </div>

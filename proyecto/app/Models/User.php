@@ -70,8 +70,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function empleados(){
         return $this->belongsToMany(Empleado::class,'empleado_user','user_id','empleado_id');
     }
-    //un usuario tiene muchos articulos
+    /*un usuario tiene muchos articulos
     public function articulos_uno_a_muchos(){
         return $this->hasMany(Articulo::class,'user_id');
-    }
+    }*/
 }

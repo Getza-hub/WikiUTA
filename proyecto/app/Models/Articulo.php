@@ -16,7 +16,7 @@ class Articulo extends Model
     }
 
     //relacion muchos a uno
-    public function user (){
+    /*public function user (){
         return $this->BelongsTo(User::class,'user_id');
-    }
+    }*/
 }

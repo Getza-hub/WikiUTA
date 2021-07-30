@@ -25,6 +25,12 @@ Route::resource('empleados','App\Http\Controllers\EmpleadoController',['except' 
 Route::get('empleados/{area}/{id}',[EmpleadoController::class, 'mostrar']);
 Route::get('empleados/{id}',[EmpleadoController::class, 'index']);
 
+/*Route::get('/plantilla', function () {
+    return view('plantilla');
+}); */
+
+
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
