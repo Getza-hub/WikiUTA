@@ -1,47 +1,57 @@
 <x-app-layout>
-  @extends('plantilla')
+    @extends('plantilla')
 
-  <x-slot name="header">
-    @section('header')
-        <title>Home|WikiUTA</title>
-        <link rel="stylesheet" href="{{ asset('css/EstiloIndex.css') }}">
-        
-    @endsection
-    <h2 class="font-semibold text-xl text-blue-800 leading-tight" align="center">
-      {{ __('WikiUTA') }}
-    </h2>
-  </x-slot>
+    <x-slot name="header">
+        @section('header')
+            <title>WikiUTA</title>
+            <link rel="stylesheet" href="{{ asset('css/EstiloIndex.css') }}">
+        @endsection
 
-  <div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">      
-          <div class="container">
-            <main>     
-              <div class="album py-5 bg-light">
-                <div class="container">
-            
-                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    @foreach($articulos_ordenados as $articulo)
-                    <div class="col">
-                      <div class="card shadow-sm">
-                        <img src="{{ $articulo->imagen}}" width="100%" height="225">
-            
-                        <div class="card-body">
-                          <p class="card-text">{{$articulo->titulo_articulo}}</p>
-                          <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                              <a class="btn btn-sm btn-outline-secondary" href="articulos/{{$articulo->articulo_id}}">Ver</a>
+        <h2 class="font-semibold text-xl text-white-800 leading-tight fs-1" align="center">
+            {{ __('WikiUTA') }}
+        </h2>
+
+        <div align="center">
+            <hr class="featurette-divider">
+        </div>
+
+        @auth
+            <div class="text-center">
+                <div class="col">
+                    <a href="/empleados/create" class="btn btn-primary col-2 float-left">Ingresar Empleado</a>
+                    <a href="/articulos/create" class="btn btn-primary col-2 float-right">Ingresar Articulo</a>
+                </div>
+            </div>
+        @endauth
+    </x-slot>
+
+    <main>
+        <div class="album py-5">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    @foreach ($articulos_ordenados as $articulo)
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img src="{{ $articulo->imagen }}" width="100%" height="225">
+
+                                <div class="card-body">
+                                    <p class="card-text">{{ $articulo->titulo_articulo }}</p>
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a class="btn btn-sm btn-outline-secondary"
+                                                href="articulos/{{ $articulo->articulo_id }}">Ver
+                                            </a>
+                                        </div>
+
+                                        <small class="text-muted">{{ $articulo->updated_at }}</small>
+                                    </div>
+                                </div>
                             </div>
-                            <small class="text-muted">{{$articulo->created_at}}</small>
-                          </div>
                         </div>
-                      </div>
-                    </div>
                     @endforeach
-                  
-      
-            </main>
-          </div>
-      </div>
-    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </x-app-layout>

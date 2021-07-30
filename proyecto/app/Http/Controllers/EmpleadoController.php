@@ -15,7 +15,8 @@ class EmpleadoController extends Controller
     public function index($id)
     {
         //
-        $empleados = Empleado::where('area_id', '=', $id)->get();
+        $empleado = Empleado::where('area_id', '=', $id)->get();
+        $empleados = $empleado->sortByDesc('updated_at');
         $areas = Area::all();
         return view(('empleados.index'),compact('empleados','areas'));
     }
@@ -27,7 +28,7 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        //
+        return view('empleados.Crear');
     }
 
     /**
@@ -38,7 +39,16 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $empleado = new Empleado();
+        $empleado->imagen = $request->get("imagen");
+        $empleado->nombre = $request->get("nombre");
+        $empleado->fono = $request->get("fono");
+        $empleado->correo = $request->get("correo");
+        $empleado->cargo = $request->get("cargo");
+        $empleado->area_id = $request->get("area");
+        $empleado->save();
+        //dd($empleado);
+        return redirect("/");
     }
 
     /**
@@ -65,7 +75,10 @@ class EmpleadoController extends Controller
      */
     public function edit($id)
     {
-        //
+        //dd($id);
+        $empleado = Empleado::find($id);
+        //dd($empleado);
+        return view('empleados.Editar', compact('empleado'));
     }
 
     /**
@@ -77,7 +90,16 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $empleado = Empleado::find($id);
+        //dd($request);
+        $empleado->imagen = $request->imagen;
+        $empleado->nombre = $request->nombre;
+        $empleado->fono = $request->fono;
+        $empleado->correo = $request->correo;
+        $empleado->cargo = $request->cargo;
+        $empleado->save();
+        //dd($empleado);
+        return redirect("/empleados/{$empleado->area_id}/{$id}");
     }
 
     /**

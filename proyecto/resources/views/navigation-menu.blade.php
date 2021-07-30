@@ -1,32 +1,39 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-blue border-b border-gray-100">
+    <header>
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    </header>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
+                <div class="flex-shrink-0 flex items-center pt-4">
                     <a href="{{URL::to('/')}}">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex pt-3">
                     <x-jet-nav-link href="{{ route('profesores') }}" :active="request()->routeIs('profesores')">
-                        Profesores
+                        <p class="fs-5">Profesores</p>
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('registraduria') }}" :active="request()->routeIs('registraduria')">
-                        Salud
+                        <p class="fs-5">Salud</p>
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('asistentes') }}" :active="request()->routeIs('asistentes')">
-                        Registraduria
+                        <p class="fs-5">Registraduria</p>
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('salud') }}" :active="request()->routeIs('salud')">
-                        Asistentes sociales
+                        <p class="fs-5">Asistentes sociales</p>
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('recaudacion') }}" :active="request()->routeIs('recaudacion')">
-                        Recaudación
+                        <p class="fs-5">Recaudación</p>
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -85,11 +92,15 @@
                     </div>
                 </div>
             @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Ingresar</a>
+                <div class="pt-3 fs-5">
+                    
+                    <a href="{{ route('login') }}" class="btn btn-sm btn-outline-secondary">Ingresar</a>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Registrar</a>
-                @endif
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="btn btn-sm btn-outline-secondary">Registrar</a>
+                    @endif
+                </div>
+                
             @endauth
                 
                

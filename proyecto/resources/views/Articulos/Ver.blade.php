@@ -1,66 +1,57 @@
-@extends('plantilla')
+<x-app-layout>
 
-@section('header')
-    <title>WikiUta/Profesor</title>
-    <link rel="stylesheet" href="css/Artc.css" />
-    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
-    <link href="css/blog.css" rel="stylesheet">
-@endsection
+    @extends('plantilla')
 
-@section('contenido')
-<div class="container">
-        <header class="blog-header py-3">
-          <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-4 pt-1">
-                <a class="btn btn-sm btn-outline-secondary" href="Registrarse.html">Registrarse</a>
+    @section('header')
+        <title>WikiUTA</title>
+        <link rel="stylesheet" href="css/Artc.css" />
+        <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+        <link href="css/blog.css" rel="stylesheet">
+    @endsection
+
+    <h2 class="font-semibold text-xl text-black-800 leading-tight fs-1" align="center">
+      {{ __('Artículo') }}
+    </h2>
+
+    <hr class="featurette-divider">
+
+    <div class="container pt-5 pb-5 rounded">
+        <div class="row">
+            <div class="col"><img class="rounded-circle border-primary border-4" src="{{ $articulo->imagen }}"
+                    width="400" height="380"></div>
+            <div class="col">
+                <div class="container">
+                    <div class="row">
+                        <h1 class="featurette-heading">{{ $articulo->titulo_articulo }}</h1>
+                    </div>
+                    <div class="row"><textarea disabled class=" form-control " rows="12"
+                            cols="78">{{ $articulo->descripcion_articulo }}</textarea></div>
+                    <div class="row mt-4">
+                        <div class="col"><a href="{{ route('articulos.edit', $articulo->articulo_id) }}"
+                                class="btn btn-primary">Editar</a></div>
+
+                        @auth
+                            <div class="col">
+                                <form action="{{ route('articulos.destroy', $articulo->articulo_id) }} " Method="post">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <input type="submit" class="btn btn-danger" value="Eliminar">
+
+                                </form>
+                            </div>
+
+                        @endauth
+                        <div class="col"><a href="\articulos" class="btn btn-secondary">Salir</a></div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                    </div>
+                </div>
             </div>
-            <div class="col-4 text-center">
-              <a class="blog-header-logo text-dark" href="\articulos">Wiki Uta</a>
-            </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-              <a class="link-secondary" href="#" aria-label="Search">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
-              </a>
-              <a class="btn btn-sm btn-outline-secondary" href="Login.html">Ingresar</a>
-            </div>
-          </div>
-        </header>
-      
-        <div class="nav-scroller py-1 mb-2">
-          <nav class="nav d-flex justify-content-between">
-          @foreach($areas as $area)
-            <a class="p-2 link-secondary" href="../empleados/{{$area->area_id}}">{{$area->nombre_area}}</a>
-            @endforeach
-            
-          </nav>
         </div>
     </div>
-    <div class="container marketing">
-    
-        <hr class="featurette-divider">
-       
-        <div class="row featurette">
-          <div class="col-md-7 order-md-2">
-              <h1 class="featurette-heading">{{$articulo->titulo_articulo}}</h1>
-              <textarea disabled class =" form-control "rows="12" cols="78">{{$articulo->descripcion_articulo}}</textarea>
-              <div class="mt-3">
-                <a class="btn btn-primary">Editar</a>
-                <form action="{{route('articulos.destroy',$articulo->articulo_id)}} " Method ="post">
-                  @csrf
-                  @method('DELETE')
 
-                  <input type = "submit" class="btn btn-danger col-2" value="Eliminar">
 
-                </form>
-                <a href="\articulos" class="btn btn-secondary">Salir</a>
-              </div>
-          </div>
-          <div class="col-md-5 order-md-1">
-            <img src="{{$articulo->imagen}}" width="400" height="380">
-          
-          </div>
-        </div>
-            <hr class="featurette-divider">
-        </div>
-        
-@endsection
+
+</x-app-layout>

@@ -31,7 +31,7 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        return view('crear');
+        return view('Articulos.Crear');
     }
 
     /**
@@ -42,10 +42,11 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        $articulos = new Articulo();
-        $articulos->id = $request->get("id");
-        $articulos->nombre = $request->get("descripcion");
-        $articulos->save();
+        $articulo = new Articulo();
+        $articulo->imagen = $request->get("imagen");
+        $articulo->titulo_articulo = $request->get("titulo");
+        $articulo->descripcion_articulo = $request->get("descripcion");
+        $articulo->save();
         return redirect("/articulos");
     }
 
@@ -74,7 +75,9 @@ class ArticuloController extends Controller
      */
     public function edit($id)
     {
-        //
+        $articulo = Articulo::find($id);
+        //dd($articulo);
+        return view('Articulos.Editar', compact('articulo'));
     }
 
     /**
@@ -86,7 +89,14 @@ class ArticuloController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $articulo = Articulo::find($id);
+        //dd($request);
+        $articulo->imagen = $request->imagen;
+        $articulo->titulo_articulo = $request->titulo;
+        $articulo->descripcion_articulo = $request->descripcion;
+        $articulo->save();
+        //dd($articulo);
+        return redirect("/articulos/{$id}");
     }
 
     /**
