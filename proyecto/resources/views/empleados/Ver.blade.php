@@ -59,7 +59,13 @@
           
                   <div class="mt-3">
                     <a class="btn btn-primary">Editar</a>
-                    <a class="btn btn-danger">Eliminar</a>
+                    <form action="{{route('empleados.destroy',$empleado->empleado_id)}} " Method ="post">
+                      @csrf
+                      @method('DELETE')
+    
+                      <input type = "submit" class="btn btn-danger col-2" value="Eliminar">
+    
+                    </form>
                     <a class="btn btn-secondary" href="/">Salir</a>
                   </div>
             </div>

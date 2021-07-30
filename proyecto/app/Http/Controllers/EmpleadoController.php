@@ -88,6 +88,9 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $empleado = Empleado::find($id);
+        $area = $empleado->area_id;
+        $empleado->delete();
+        return redirect("/empleados/{$area}");
     }
 }
